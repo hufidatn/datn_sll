@@ -1,0 +1,137 @@
+﻿*{padding:0; margin:0}
+body {
+}
+
+ul {
+list-style: none
+}
+ul#menu
+{
+	float:left;
+	width:980px;
+	position: relative;
+	/*font-size:1.8em;*/
+	font-size:20px;
+	height:35px;
+	text-transform:capitalize;
+	top:0px;
+	left:0px;
+	background-color:#1589ff;
+}
+#div_menungang{
+width: 980px;
+-moz-border-radius:10px;
+margin:5px auto 5px auto;
+}
+ul#menu li
+{
+	float: left;
+	height: 35px;
+	padding: 0px;
+	border-right: thin solid;
+	border-right-color: #005680;
+}
+
+ul#menu li a
+{
+	padding:5px 15px 5px 15px;
+	display: block;
+	color: #FFFFFF;
+	text-decoration:none;
+	height:8px;
+}
+
+ul#menu li:hover {
+background-color:Red;
+}
+
+
+
+
+.menucha
+{
+text-align:left;color:White;
+  background-color:#5f9ae0; 
+  font-size:17px; font-weight:bold;
+  padding-left:5px;
+  cursor:pointer; 
+  border:1px thin #5f9ae0;  
+  line-height:25px;
+	}
+.noidungtrongmenu{border:solid 1px purple;
+	border-style:dotted;}
+.chonmenu{color:White;
+  background-color:#5f9ae0; 
+  font-size:17px; font-weight:bold;padding:2px; 
+  cursor:pointer;  
+  border:1px thin #5f9ae0;
+  line-height:25px;}
+.mnucon
+{
+ text-decoration:none;
+ color:#00008b;
+  line-height:30px;
+  padding:5px; 
+  border-top:none; 
+   
+}
+
+
+.mnucon:Hover{color:Purple;}
+/*tiêu đề*/
+
+.tieude
+{
+	
+	color:Black;
+	border:1 solid blue;
+	font-size:30px;
+	height:40px;
+	text-align:center;
+	
+	
+}
+.tentruong
+{text-align:right;
+ padding:auto;
+ height:30px;
+ font-size:17px;
+ width:265px;
+}
+
+.dieukhien
+{
+	
+
+	
+ }
+
+ 
+.dongdieukhien
+ {height:30px;
+  font-size:17px;
+  }
+.gridview{text-align:center;}
+/* phan lop cho hoc sinh*/
+.dong{padding-left:10px;
+      height:30px;}
+
+.table{height:35px;
+       font-size:17px;
+       }
+       .table1{height:35px;
+               text-align:right;
+               padding-right:10px;
+               padding-left:10px;}
+               
+               
+ .table2{height:35px;
+         padding-right:40px;
+         text-align:right;}
+         .dtb
+         {
+         	width:80%;
+         	text-align:right;
+         	height:25px;
+         	font-size:17px;
+         	}

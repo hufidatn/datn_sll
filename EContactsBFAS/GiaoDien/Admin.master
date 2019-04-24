@@ -1,0 +1,118 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="Admin.master.cs" Inherits="GiaoDien_Admin"  %>
+
+<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="asp" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head id="Head1" runat="server">
+    <title>Quản trị</title>
+    <link href="../CSS/Admin.css" rel="Stylesheet" type="text/css" />
+   
+    <script src="../CSS/jquery-1.5.1.js" type="text/javascript" ></script>
+    <script src="../CSS/jquery.validate.js" type="text/javascript"></script>
+   <%-- <script src="../CSS/JQuery.js" type="text/javascript"></script>--%>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">   
+    <asp:ToolkitScriptManager ID="tk1" runat="server"></asp:ToolkitScriptManager> 
+    <div style="width: 980px; margin: 5px auto">
+    <div style="width:980px;margin:5px auto;height:170px;border:solid 1px blue;">
+    <img src="../image/banner1.jpg" style="width:980px;height:170px" />
+    </div>
+    <div id="div_menungang">
+            <ul id="menu">
+                <li class="top"><a href="TrangChu.aspx">Trang chủ</a></li>
+                <li class="top"><a href="#">Giới thiệu</a></li>
+                <li class="top"><a href="XemDiem.aspx">Xem điểm</a></li>
+                <li class="top"><a href="#">Liên lạc</a></li>
+                <li class="top"><a href="#">Đăng nhập</a></li>
+            </ul>
+        </div> 
+   
+     <div style="float:right;margin-right:20px">
+         <b style="color:Red;font-style:italic">Chào bạn</b>&nbsp
+       <b style="font-style:italic;font-stretch:ultra-condensed"><asp:Label ID="lblTenDN" runat="server" ></asp:Label></b>&nbsp&nbsp&nbsp&nbsp&nbsp
+        <asp:LinkButton ID="lbtDangXuat" runat="server" Text="Đăng xuất" 
+             onclick="lbtDangXuat_Click" ></asp:LinkButton>
+     
+    </div>  
+     <div style="width:980px;margin:5px auto auto auto; float:left; ">
+     <div style ="width:200px;margin:0 auto auto 0;float:left;border:solid 1px #1589ff;">
+        <asp:Accordion ID="acd1" Width="99%"  AutoSize="None" 
+           runat="server" HeaderCssClass="menucha" ContentCssClass="noidungtrongmenu" HeaderSelectedCssClass="chonmenu" BorderStyle="Groove" BorderColor="Blue" BorderWidth="1px">
+             <Panes>
+               <asp:AccordionPane ID="mn1" runat="server">
+               <Header>Quản lý người dùng</Header>
+               <Content>
+                    <div runat="server" id="NguoiDung">
+                    <a href="DoiMatKhau.aspx" class="mnucon">Đổi mật khẩu</a></div>
+                    <div runat="server" id="PhanQuyen">
+                    <a href="Acounts.aspx" class="mnucon">Tạo tài khoản</a><br />
+                    <a href="GroupUsers.aspx" class="mnucon">Quản lý nhóm người dùng</a><br />
+                    <a href="User_UserGroups.aspx" class="mnucon">Phân quyền</a></div>
+               </Content>
+               </asp:AccordionPane>
+               <asp:AccordionPane ID="AccordionPane1" runat="server">
+               <Header>Quản lý thông tin</Header>
+               <Content>
+               <div runat="server" id="Quantri">
+                    <a href="NienHoc.aspx" class="mnucon" runat="server">Quản lý năm học</a><br />
+                    <a href="#"class="mnucon"> Quản lý kỳ học</a><br />
+                    <a href="QuanLyKhoit.aspx" class="mnucon"> Quản lý khối học</a><br />
+                    <a href="QuanLyLop.aspx" class= "mnucon"> Quản lý lớp học</a><br />
+                    <a href="BanHoc.aspx" class="mnucon"> Quản lý ban học</a><br />
+                    <a href="MonHoc.aspx" class="mnucon"> Quản lý môn học</a><br />
+                    <a href="NhapTTHS.aspx" class="mnucon"> Quản lý học sinh</a><br />
+                    <a href="QuanLyLoaiDiem.aspx" class="mnucon"> Quản lý loại điểm</a><br />
+                    <a href="QLCacViPham.aspx" class="mnucon"> Quản lý lỗi vi phạm</a><br />
+                    <a href="../QuanTri/GroupUsers.aspx" class="mnucon">Quản lý nhóm giao viên</a><br />
+                    <a href="QuanLyGiaoVien.aspx" class="mnucon">Quản lý giáo viên</a><br />
+                    <a href="PhanBanChoMonHoc.aspx" class="mnucon">Phân môn học vào từng ban</a><br />
+                    <a href="PhanLopTheoBan.aspx" class="mnucon">Phân ban cho lớp học</a><br />
+                    <a href="ChuyenLopChoHS.aspx" class="mnucon">Phân lớp cho học sinh</a><br />
+                    <a href="PhanCongGiangDay.aspx" class="mnucon">Phân công giảng dạy</a><br />
+                    <a href="DanhSachHocSinh.aspx" class="mnucon">Danh sách học sinh</a><br />
+                    </div>
+                    <div runat="server" id="NhapDiem"><a href="NhapDiem.aspx" class="mnucon" > Quản lý điểm</a><br /></div>
+                    <div runat="server" id="Vipham">
+                    <a href="ThongTinViPham.aspx"class="mnucon">Vi phạm của học sinh</a><br />
+                    </div>  
+                    
+               </Content>
+               </asp:AccordionPane> 
+               <asp:AccordionPane ID="AccordionPane2" runat="server">
+               <Header >
+                    Kết quả rèn luyện
+               </Header>
+               <Content>
+                    <div id="KQRLCua1Lop" runat="server"><a href="BangDiemCuaLop.aspx" class="mnucon" >Bảng điểm của lớp</a></div>
+                    <div runat="server"  id="DiemTheoMon"><a href="BangDiemTheoMonHoc.aspx" class="mnucon" >Bảng điểm theo môn học</a></div>
+                    <div runat="server" id="KQRLCuaLop"><a href="KetQuaRenLuyen.aspx" class="mnucon" >Kết quả rèn luyện</a></div>
+                    <div runat="server" id="HanhKiem"><a href="DanhGiaHanhKiem.aspx" class="mnucon" >Đánh giá hạnh kiểm</a></div>
+                    <div runat="server" id="PhieuDiem"><a href="PhieuDiemCuaTungHocSinh.aspx" class="mnucon" >Xem phiếu điểm</a></div>
+               </Content>
+               </asp:AccordionPane>         
+             </Panes>
+        </asp:Accordion>
+     </div>
+     <div style="width:775px;margin:0px auto 5px 205px;border:solid 1px green;">
+        <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">  
+        </asp:ContentPlaceHolder>
+        </div>
+        <br />
+        
+      </div>
+       <div  style="width:990px;height:103px;float:left;text-align:center;background-image:url(../image/Eschool_08.jpg);">
+    <div align="center" style="color:White; font-size:16px;margin-top:10px; ">
+    &copy; Copyright 2011 Econtacts
+    <br />
+        Email: samngocpxhn@gmail.com-ps.tk62@gmail.com | Phone: 0973 088262 - 01696 902581
+    </div></div>
+   </div>
+  
+    </form>
+</body>
+</html>

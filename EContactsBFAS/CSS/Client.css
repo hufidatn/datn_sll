@@ -1,0 +1,128 @@
+﻿*{padding:0; margin:0}
+
+body 
+{
+	font-size:62.5%;
+	/*background-image:url(../image/hinhnen2.jpg);*/
+}
+
+ul {
+list-style: none
+}
+
+#div_menungang{
+width: 980px;
+-moz-border-radius:10px;
+}
+
+ul#menu
+{
+	float:left;
+	width:980px;
+	position: relative;
+	font-size:1.8em;
+	height:35px;
+	text-transform:capitalize;
+	top:0px;
+	left:0px;
+	background-color:#1589ff;
+}
+
+
+ul#menu li
+{
+	float: left;
+	height: 35px;
+	padding: 0px;
+	border-right: thin solid;
+	border-right-color: #005680;
+}
+
+ul#menu li a
+{
+	padding:5px 15px 5px 15px;
+	display: block;
+	color: #FFFFFF;
+	text-decoration:none;
+	height:8px;
+}
+
+ul#menu li:hover {
+background-color:Red;
+}
+.content
+{
+	-moz-border-radius:5px;
+}
+.divKhungChinh{border:solid 1px #507cd1;
+               margin-top:5px;
+               margin-bottom:10px;
+               float:left;
+               width:980px;
+               -moz-border-radius:5px;
+	height:auto;
+}
+/*---title nội dung*/
+
+.titleDiem{height:25px; font-size:25px;margin:10px auto auto 20px;
+           border-bottom-style:solid;
+           border-bottom-color:Green;
+           border-bottom-width:1px;
+           width:930px;
+           padding-bottom:5px;}
+
+#divChon{margin:5px auto 20px 20px;
+         font-size:17px;
+         width:880px;
+         padding-bottom:5px;
+         padding-left:50px;
+         height:80px;
+         border-bottom:solid 1px green;
+         }
+         
+.tenTruong
+{ 
+  padding:5px;
+  text-align:right;
+  height:40px;
+	}
+	
+.DieuKhien
+{
+	height:40px;
+	padding:5px auto;
+}
+#divGridView{width:930px;
+             height:auto;
+             border:solid 1px green;
+             margin:20px auto 5px 20px;
+             -moz-border-radius:5px 5px 0 0;}
+             
+#divGiua{width:930px;
+         height:200px;}
+         
+#divThongTin{margin:5px auto auto 20px;
+             font-size:17px;}
+
+.divDanhGia{margin:5px 30px auto auto;
+            font-size:17px;}
+
+/*trang sổ liên lạc*/
+
+#divKhungDiem{width:470px;
+              margin:5px auto auto 20px;
+              float:left;
+              height:500px;
+ 
+              border:solid 1px green;}
+              
+ /*footer*/
+ .footer
+ { background-image:url(../image/Eschool_08.jpg);
+   
+   
+ 	}
+ 	
+ .div1{height:auto;
+       margin-bottom:10px;
+       font-size:17px;}	

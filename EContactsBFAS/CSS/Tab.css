@@ -1,0 +1,86 @@
+﻿body {
+}
+.Tab .ajax__tab_header
+{
+
+font-family:.Vn3DH;
+font-size: 20px;
+font-weight: bold;
+text-decoration:underline;
+background-color: #fff;
+margin-left: 0px;
+height:30px;
+}
+/*Body*/
+.Tab .ajax__tab_body
+{
+border-width:1px;
+padding-top:0px;
+ border-top: 0;
+-moz-boder-radius:5px;
+}
+/*Tab Active*/
+.Tab .ajax__tab_active .ajax__tab_tab
+{
+color: #fff;
+background-color:#507CD1;
+height:30px;
+-moz-boder-radius:5px;
+}
+
+.Tab .ajax__tab_active .ajax__tab_inner
+{
+color: #ffffff;
+background-color:#507CD1;
+padding-left:10px;
+-moz-boder-radius:5px;
+}
+.Tab .ajax__tab_active .ajax__tab_outer
+{ color: #fff;
+background-color:#507CD1;
+padding-right:6px;
+-moz-boder-radius:5px;
+}
+
+/*Tab Hover*/
+.Tab .ajax__tab_hover .ajax__tab_tab
+{
+color: #ccc;
+
+height:30px;
+-moz-boder-radius:5px;
+}
+
+.Tab .ajax__tab_hover .ajax__tab_inner
+{
+color: #000000;
+
+padding-left:10px;
+}
+.Tab .ajax__tab_hover .ajax__tab_outer
+{
+color: #000000;
+padding-right:6px;
+}
+/*Tab Inactive*/
+
+.Tab .ajax__tab_tab
+{
+color: #666666;
+
+height:30px;
+}
+.Tab .ajax__tab_inner
+{
+color: #666666;
+
+padding-left:10px;
+}
+.Tab .ajax__tab_outer
+{
+color: #666666;
+-moz-boder-radius:5px;
+background-color:#fff;
+padding-right:6px;
+margin-right: 2px;
+}

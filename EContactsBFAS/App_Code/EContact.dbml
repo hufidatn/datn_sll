@@ -1,0 +1,412 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Database Name="ECONTACTS" Class="EContactDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="WebSettings" ConnectionString="Data Source=.\SQLEXPRESS;Initial Catalog=ECONTACTS;Integrated Security=True" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="ECONTACTSConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.ClassDepartments" Member="ClassDepartments">
+    <Type Name="ClassDepartment">
+      <Column Name="SchoolYearID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="ClassID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="DepartmentID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="TeacherID" Type="System.String" DbType="NChar(10) NOT NULL" CanBeNull="false" />
+      <Association Name="Class_ClassDepartment" Member="Class" ThisKey="ClassID" Type="Class" IsForeignKey="true" />
+      <Association Name="Department_ClassDepartment" Member="Department" ThisKey="DepartmentID" Type="Department" IsForeignKey="true" />
+      <Association Name="SchoolYear_ClassDepartment" Member="SchoolYear" ThisKey="SchoolYearID" Type="SchoolYear" IsForeignKey="true" />
+      <Association Name="Teacher_ClassDepartment" Member="Teacher" ThisKey="TeacherID" Type="Teacher" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Violations" Member="Violations">
+    <Type Name="Violation">
+      <Column Name="ViolationID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="ViolationName" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="Description" Type="System.String" DbType="NVarChar(300)" CanBeNull="true" />
+      <Association Name="Violation_Sanction" Member="Sanctions" OtherKey="ViolationID" Type="Sanction" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Classes" Member="Classes">
+    <Type Name="Class">
+      <Column Name="ClassID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="ClassName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="GradeSchoolID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Class_ClassDepartment" Member="ClassDepartments" OtherKey="ClassID" Type="ClassDepartment" />
+      <Association Name="Class_ClassStudent" Member="ClassStudents" OtherKey="ClassID" Type="ClassStudent" />
+      <Association Name="Class_Conduct" Member="Conducts" OtherKey="ClassID" Type="Conduct" />
+      <Association Name="Class_Sanction" Member="Sanctions" OtherKey="ClassID" Type="Sanction" />
+      <Association Name="Class_TeacherSubject" Member="TeacherSubjects" OtherKey="ClassID" Type="TeacherSubject" />
+      <Association Name="Class_Score" Member="Scores" OtherKey="ClassID" Type="Score" />
+      <Association Name="GradeSchool_Class" Member="GradeSchool" ThisKey="GradeSchoolID" Type="GradeSchool" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.ClassStudents" Member="ClassStudents">
+    <Type Name="ClassStudent">
+      <Column Name="SchoolYearID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="ClassID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="StudentID" Type="System.String" DbType="NChar(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Association Name="Class_ClassStudent" Member="Class" ThisKey="ClassID" Type="Class" IsForeignKey="true" />
+      <Association Name="SchoolYear_ClassStudent" Member="SchoolYear" ThisKey="SchoolYearID" Type="SchoolYear" IsForeignKey="true" />
+      <Association Name="Student_ClassStudent" Member="Student" ThisKey="StudentID" Type="Student" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Conducts" Member="Conducts">
+    <Type Name="Conduct">
+      <Column Name="SchoolYearID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="ClassID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="SemesterID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="StudentID" Type="System.String" DbType="NChar(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Conduct1" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Association Name="Class_Conduct" Member="Class" ThisKey="ClassID" Type="Class" IsForeignKey="true" />
+      <Association Name="SchoolYear_Conduct" Member="SchoolYear" ThisKey="SchoolYearID" Type="SchoolYear" IsForeignKey="true" />
+      <Association Name="Semester_Conduct" Member="Semester" ThisKey="SemesterID" Type="Semester" IsForeignKey="true" />
+      <Association Name="Semester_Conduct1" Member="Semester1" ThisKey="SemesterID" Type="Semester" IsForeignKey="true" />
+      <Association Name="Student_Conduct" Member="Student" ThisKey="StudentID" Type="Student" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Departments" Member="Departments">
+    <Type Name="Department">
+      <Column Name="DepartmentID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="DepartmentName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Association Name="Department_ClassDepartment" Member="ClassDepartments" OtherKey="DepartmentID" Type="ClassDepartment" />
+      <Association Name="Department_DepartmentSubject" Member="DepartmentSubjects" OtherKey="DepartmentID" Type="DepartmentSubject" />
+    </Type>
+  </Table>
+  <Table Name="dbo.DepartmentSubjects" Member="DepartmentSubjects">
+    <Type Name="DepartmentSubject">
+      <Column Name="DepartmentID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="SubjectID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Multiplier" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Department_DepartmentSubject" Member="Department" ThisKey="DepartmentID" Type="Department" IsForeignKey="true" />
+      <Association Name="Subject_DepartmentSubject" Member="Subject" ThisKey="SubjectID" Type="Subject" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.GradeSchools" Member="GradeSchools">
+    <Type Name="GradeSchool">
+      <Column Name="GradeSchoolID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="GradeSchoolName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Association Name="GradeSchool_Class" Member="Classes" OtherKey="GradeSchoolID" Type="Class" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Sanctions" Member="Sanctions">
+    <Type Name="Sanction">
+      <Column Name="SanctionID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="SchoolYearID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="SemesterID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ClassID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="StudentID" Type="System.String" DbType="NChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="SubjectID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ViolationID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="DateViolation" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="SanctionName" Type="System.String" DbType="NVarChar(300) NOT NULL" CanBeNull="false" />
+      <Column Name="StateMessage" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="StateSendMessage" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="Number" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Class_Sanction" Member="Class" ThisKey="ClassID" Type="Class" IsForeignKey="true" />
+      <Association Name="Violation_Sanction" Member="Violation" ThisKey="ViolationID" Type="Violation" IsForeignKey="true" />
+      <Association Name="SchoolYear_Sanction" Member="SchoolYear" ThisKey="SchoolYearID" Type="SchoolYear" IsForeignKey="true" />
+      <Association Name="Semester_Sanction" Member="Semester" ThisKey="SemesterID" Type="Semester" IsForeignKey="true" />
+      <Association Name="Student_Sanction" Member="Student" ThisKey="StudentID" Type="Student" IsForeignKey="true" />
+      <Association Name="Subject_Sanction" Member="Subject" ThisKey="SubjectID" Type="Subject" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.SchoolYears" Member="SchoolYears">
+    <Type Name="SchoolYear">
+      <Column Name="SchoolYearID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="SchoolYearName" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
+      <Column Name="BeginDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="EndDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Association Name="SchoolYear_ClassDepartment" Member="ClassDepartments" OtherKey="SchoolYearID" Type="ClassDepartment" />
+      <Association Name="SchoolYear_ClassStudent" Member="ClassStudents" OtherKey="SchoolYearID" Type="ClassStudent" />
+      <Association Name="SchoolYear_Conduct" Member="Conducts" OtherKey="SchoolYearID" Type="Conduct" />
+      <Association Name="SchoolYear_Sanction" Member="Sanctions" OtherKey="SchoolYearID" Type="Sanction" />
+      <Association Name="SchoolYear_TeacherSubject" Member="TeacherSubjects" OtherKey="SchoolYearID" Type="TeacherSubject" />
+      <Association Name="SchoolYear_Users_UserGroup" Member="Users_UserGroups" OtherKey="SchoolYearID" Type="Users_UserGroup" />
+      <Association Name="SchoolYear_Score" Member="Scores" OtherKey="SchoolYearID" Type="Score" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Semesters" Member="Semesters">
+    <Type Name="Semester">
+      <Column Name="SemesterID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="SemesterName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Association Name="Semester_Conduct" Member="Conducts" OtherKey="SemesterID" Type="Conduct" />
+      <Association Name="Semester_Conduct1" Member="Conducts1" OtherKey="SemesterID" Type="Conduct" />
+      <Association Name="Semester_Sanction" Member="Sanctions" OtherKey="SemesterID" Type="Sanction" />
+      <Association Name="Semester_TeacherSubject" Member="TeacherSubjects" OtherKey="SemesterID" Type="TeacherSubject" />
+      <Association Name="Semester_Score" Member="Scores" OtherKey="SemesterID" Type="Score" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Students" Member="Students">
+    <Type Name="Student">
+      <Column Name="StudentID" Type="System.String" DbType="NChar(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="StudentName" Type="System.String" DbType="NVarChar(300)" CanBeNull="true" />
+      <Column Name="DateOfBirth" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Gender" Type="System.String" DbType="NVarChar(5)" CanBeNull="true" />
+      <Column Name="Address" Type="System.String" DbType="NVarChar(300)" CanBeNull="true" />
+      <Column Name="PhoneFixe" Type="System.String" DbType="NChar(15)" CanBeNull="true" />
+      <Column Name="MobilePhone" Type="System.String" DbType="NChar(15)" CanBeNull="true" />
+      <Association Name="Student_ClassStudent" Member="ClassStudents" OtherKey="StudentID" Type="ClassStudent" />
+      <Association Name="Student_Conduct" Member="Conducts" OtherKey="StudentID" Type="Conduct" />
+      <Association Name="Student_Sanction" Member="Sanctions" OtherKey="StudentID" Type="Sanction" />
+      <Association Name="Student_Score" Member="Scores" OtherKey="StudentID" Type="Score" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Subjects" Member="Subjects">
+    <Type Name="Subject">
+      <Column Name="SubjectID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="SubjectName" Type="System.String" DbType="NVarChar(300)" CanBeNull="true" />
+      <Association Name="Subject_DepartmentSubject" Member="DepartmentSubjects" OtherKey="SubjectID" Type="DepartmentSubject" />
+      <Association Name="Subject_Sanction" Member="Sanctions" OtherKey="SubjectID" Type="Sanction" />
+      <Association Name="Subject_TeacherSubject" Member="TeacherSubjects" OtherKey="SubjectID" Type="TeacherSubject" />
+      <Association Name="Subject_Score" Member="Scores" OtherKey="SubjectID" Type="Score" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TeacherSubjects" Member="TeacherSubjects">
+    <Type Name="TeacherSubject">
+      <Column Name="TeacherID" Type="System.String" DbType="NChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="SubjectID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="SemesterID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="SchoolYearID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="ClassID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Association Name="Class_TeacherSubject" Member="Class" ThisKey="ClassID" Type="Class" IsForeignKey="true" />
+      <Association Name="SchoolYear_TeacherSubject" Member="SchoolYear" ThisKey="SchoolYearID" Type="SchoolYear" IsForeignKey="true" />
+      <Association Name="Semester_TeacherSubject" Member="Semester" ThisKey="SemesterID" Type="Semester" IsForeignKey="true" />
+      <Association Name="Subject_TeacherSubject" Member="Subject" ThisKey="SubjectID" Type="Subject" IsForeignKey="true" />
+      <Association Name="Teacher_TeacherSubject" Member="Teacher" ThisKey="TeacherID" Type="Teacher" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TypeScores" Member="TypeScores">
+    <Type Name="TypeScore">
+      <Column Name="TypeScoreID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="TypeScoreName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Association Name="TypeScore_Score" Member="Scores" OtherKey="TypeScoreID" Type="Score" />
+    </Type>
+  </Table>
+  <Table Name="dbo.UserGroups" Member="UserGroups">
+    <Type Name="UserGroup">
+      <Column Name="UserGroupID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="UserGroupName" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="RoleName" Type="System.String" DbType="NVarChar(300)" CanBeNull="true" />
+      <Association Name="UserGroup_Users_UserGroup" Member="Users_UserGroups" OtherKey="UserGroupID" Type="Users_UserGroup" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Users_UserGroups" Member="Users_UserGroups">
+    <Type Name="Users_UserGroup">
+      <Column Name="UserGroupID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="TeacherID" Type="System.String" DbType="NChar(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="SchoolYearID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Association Name="SchoolYear_Users_UserGroup" Member="SchoolYear" ThisKey="SchoolYearID" Type="SchoolYear" IsForeignKey="true" />
+      <Association Name="UserGroup_Users_UserGroup" Member="UserGroup" ThisKey="UserGroupID" Type="UserGroup" IsForeignKey="true" />
+      <Association Name="Teacher_Users_UserGroup" Member="Teacher" ThisKey="TeacherID" Type="Teacher" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Scores" Member="Scores">
+    <Type Name="Score">
+      <Column Name="ScoreID" Type="System.String" DbType="NChar(15) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="SchoolYearID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="SemesterID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ClassID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="SubjectID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="StudentID" Type="System.String" DbType="NChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="TypeScoreID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Score" Member="Score1" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Association Name="Class_Score" Member="Class" ThisKey="ClassID" Type="Class" IsForeignKey="true" />
+      <Association Name="SchoolYear_Score" Member="SchoolYear" ThisKey="SchoolYearID" Type="SchoolYear" IsForeignKey="true" />
+      <Association Name="Semester_Score" Member="Semester" ThisKey="SemesterID" Type="Semester" IsForeignKey="true" />
+      <Association Name="Student_Score" Member="Student" ThisKey="StudentID" Type="Student" IsForeignKey="true" />
+      <Association Name="Subject_Score" Member="Subject" ThisKey="SubjectID" Type="Subject" IsForeignKey="true" />
+      <Association Name="TypeScore_Score" Member="TypeScore" ThisKey="TypeScoreID" Type="TypeScore" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Teachers" Member="Teachers">
+    <Type Name="Teacher">
+      <Column Name="TeacherID" Type="System.String" DbType="NChar(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="TeacherName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Email" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Phone" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
+      <Column Name="UserName" Type="System.String" DbType="NChar(50)" CanBeNull="true" />
+      <Column Name="PassWord" Type="System.String" DbType="NChar(50)" CanBeNull="true" />
+      <Association Name="Teacher_ClassDepartment" Member="ClassDepartments" OtherKey="TeacherID" Type="ClassDepartment" />
+      <Association Name="Teacher_TeacherSubject" Member="TeacherSubjects" OtherKey="TeacherID" Type="TeacherSubject" />
+      <Association Name="Teacher_Users_UserGroup" Member="Users_UserGroups" OtherKey="TeacherID" Type="Users_UserGroup" />
+    </Type>
+  </Table>
+  <Function Name="dbo.LoginSystem" Method="LoginSystem">
+    <Parameter Name="TenDN" Parameter="tenDN" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="MatKhau" Parameter="matKhau" Type="System.String" DbType="VarChar(50)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.InsertTeacherSujects" Method="InsertTeacherSujects">
+    <Parameter Name="MaGV" Parameter="maGV" Type="System.String" DbType="NChar(50)" />
+    <Parameter Name="mon" Type="System.Int32" DbType="Int" />
+    <Parameter Name="ky" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Nam" Parameter="nam" Type="System.Int32" DbType="Int" />
+    <Parameter Name="lop" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.BangGVBM" Method="BangGVBM" IsComposable="true">
+    <ElementType Name="BangGVBMResult">
+      <Column Name="TeacherID" Type="System.String" DbType="NChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="TeacherName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="UserName" Type="System.String" DbType="NChar(100)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.TimTheoTenHSCu" Method="TimTheoTenHSCu" IsComposable="true">
+    <ElementType Name="TimTheoTenHSCuResult">
+      <Column Name="StudentName" Type="System.String" DbType="NVarChar(300)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.canbo" Method="canbo" IsComposable="true">
+    <ElementType Name="canboResult">
+      <Column Name="UserName" Type="System.String" DbType="NChar(100)" CanBeNull="true" />
+      <Column Name="TeacherName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="TeacherID" Type="System.String" DbType="NChar(10) NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.cbkhac" Method="cbkhac" IsComposable="true">
+    <ElementType Name="cbkhacResult">
+      <Column Name="UserName" Type="System.String" DbType="NChar(100)" CanBeNull="true" />
+      <Column Name="TeacherName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="TeacherID" Type="System.String" DbType="NChar(10) NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.[dbo.funcStudent]" Method="dbo_funcStudent" IsComposable="true">
+    <ElementType Name="dbo_funcStudentResult">
+      <Column Name="StudentID" Type="System.String" DbType="NChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="StudentName" Type="System.String" DbType="NVarChar(300)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.DiemTheoMon" Method="DiemTheoMon" IsComposable="true">
+    <ElementType Name="DiemTheoMonResult">
+      <Column Name="SchoolYearID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="SchoolYearName" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
+      <Column Name="ClassName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="StudentName" Type="System.String" DbType="NVarChar(300)" CanBeNull="true" />
+      <Column Name="SemesterName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="SubjectName" Type="System.String" DbType="NVarChar(300)" CanBeNull="true" />
+      <Column Name="ClassID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="StudentID" Type="System.String" DbType="NChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="SemesterID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="SubjectID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.gvlopmon" Method="gvlopmon" IsComposable="true">
+    <ElementType Name="gvlopmonResult">
+      <Column Name="UserName" Type="System.String" DbType="NChar(100)" CanBeNull="true" />
+      <Column Name="TeacherName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="TeacherID" Type="System.String" DbType="NChar(10) NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.KTMAPL" Method="KTMAPL" IsComposable="true">
+    <ElementType Name="KTMAPLResult">
+      <Column Name="StudentID" Type="System.String" DbType="NChar(10) NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.LoadAdmin" Method="LoadAdmin" IsComposable="true">
+    <ElementType Name="LoadAdminResult">
+      <Column Name="TeacherID" Type="System.String" DbType="NChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="TeacherName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Email" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Phone" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
+      <Column Name="UserName" Type="System.String" DbType="NChar(100)" CanBeNull="true" />
+      <Column Name="PassWord" Type="System.String" DbType="NChar(100)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.LoadGridViewCu" Method="LoadGridViewCu" IsComposable="true">
+    <Parameter Name="Nam" Parameter="nam" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Khoi" Parameter="khoi" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Lop" Parameter="lop" Type="System.Int32" DbType="Int" />
+    <ElementType Name="LoadGridViewCuResult">
+      <Column Name="StudentID" Type="System.String" DbType="NChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="StudentName" Type="System.String" DbType="NVarChar(300)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.LoadgrvPhanQuyen" Method="LoadgrvPhanQuyen" IsComposable="true">
+    <ElementType Name="LoadgrvPhanQuyenResult">
+      <Column Name="UserName" Type="System.String" DbType="NChar(100)" CanBeNull="true" />
+      <Column Name="TeacherName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="UserGroupID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="RoleName" Type="System.String" DbType="NVarChar(300)" CanBeNull="true" />
+      <Column Name="SchoolYearName" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.LoadGV" Method="LoadGV" IsComposable="true">
+    <ElementType Name="LoadGVResult">
+      <Column Name="TeacherID" Type="System.String" DbType="NChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="TeacherName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.LoadGVCu" Method="LoadGVCu" IsComposable="true">
+    <Parameter Name="MaKhoi" Parameter="maKhoi" Type="System.Int32" DbType="Int" />
+    <Parameter Name="MaNam" Parameter="maNam" Type="System.Int32" DbType="Int" />
+    <Parameter Name="MaLop" Parameter="maLop" Type="System.Int32" DbType="Int" />
+    <ElementType Name="LoadGVCuResult">
+      <Column Name="TeacherID" Type="System.String" DbType="NChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="TeacherName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.LoadLop" Method="LoadLop" IsComposable="true">
+    <Parameter Name="MaKhoi" Parameter="maKhoi" Type="System.Int32" DbType="Int" />
+    <ElementType Name="LoadLopResult">
+      <Column Name="ClassID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ClassName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.LopcoHSnhohon50" Method="LopcoHSnhohon50" IsComposable="true">
+    <Parameter Name="MaKhoi" Parameter="maKhoi" Type="System.Int32" DbType="Int" />
+    <Parameter Name="MaNam" Parameter="maNam" Type="System.Int32" DbType="Int" />
+    <ElementType Name="LopcoHSnhohon50Result">
+      <Column Name="ClassID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ClassName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.LopHS1011Cu" Method="LopHS1011Cu" IsComposable="true">
+    <Parameter Name="Khoi" Parameter="khoi" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Nam" Parameter="nam" Type="System.Int32" DbType="Int" />
+    <ElementType Name="LopHS1011CuResult">
+      <Column Name="ClassID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ClassName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.LopMoi" Method="LopMoi" IsComposable="true">
+    <ElementType Name="LopMoiResult">
+      <Column Name="ClassID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ClassName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.NamCu" Method="NamCu" IsComposable="true">
+    <ElementType Name="NamCuResult">
+      <Column Name="SchoolYearID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="SchoolYearName" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.NamMoi" Method="NamMoi" IsComposable="true">
+    <ElementType Name="NamMoiResult">
+      <Column Name="SchoolYearID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="SchoolYearName" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.NhomGVCN" Method="NhomGVCN" IsComposable="true">
+    <ElementType Name="NhomGVCNResult">
+      <Column Name="UserName" Type="System.String" DbType="NChar(100)" CanBeNull="true" />
+      <Column Name="TeacherName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="TeacherID" Type="System.String" DbType="NChar(10) NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.PhanMon" Method="PhanMon" IsComposable="true">
+    <ElementType Name="PhanMonResult">
+      <Column Name="ClassID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ClassName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="SchoolYearName" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.Score" Method="Score" IsComposable="true">
+    <ElementType Name="ScoreResult">
+      <Column Name="SchoolYearID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="SchoolYearName" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
+      <Column Name="ClassName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="StudentName" Type="System.String" DbType="NVarChar(300)" CanBeNull="true" />
+      <Column Name="SemesterName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="SubjectName" Type="System.String" DbType="NVarChar(300)" CanBeNull="true" />
+      <Column Name="ClassID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="StudentID" Type="System.String" DbType="NChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="SemesterID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="SubjectID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+</Database>

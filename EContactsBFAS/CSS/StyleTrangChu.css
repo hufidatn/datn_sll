@@ -1,0 +1,133 @@
+﻿body {
+}
+#wrapper {
+    height: auto;
+    margin: 0 auto 5px;
+    padding: 2px;
+    width: 976px;
+}
+#contentTop1 {
+    height: 350px;
+    width: 980px;
+}
+.Top1left {
+    float: left;
+    height: 350px;
+    margin-bottom: 5px;
+    width: 600px;
+    border:solid 1px #3c7dbc;
+}
+.BoxTopright {
+    /*background: url("../Image/Main_06.gif") no-repeat scroll 0 0 transparent;*/
+    color: #14ADE4;
+    float: right;
+    font-family: Tahoma;
+    font-size: 13px;
+    height: 23px;
+    padding-left: 35px;
+    padding-top: 5px;
+    width: 193px;
+}
+.Top1right {
+  
+    float:right ;
+    margin-left: 3px;
+    width: 370px;
+}
+.boxbotton-t1 {
+    background: url("../Image/Main_11.gif") repeat-x scroll center top transparent;
+    height: 12px;
+}
+.slideshow {position:relative; width:600px; height:350px;
+            } 
+ .slideshow img{position:absolute;left:-2px; 
+width:600px; height:350px; margin:0;
+	top: -3px;
+}
+               
+.ten
+{
+	color:White;
+	font-size:17px;
+	height:30px;
+	width:130px;
+	text-align:right;
+	}
+	.dieukhien
+	{
+		width:150px;
+		height:30px;
+		text-align:left;
+		font-size:17;
+		color:White;
+		}
+		.imgbuton
+		{
+			-moz-border-radius:8px;
+			}
+	#newsleft
+ 	{ width :270px;
+ 	  height:auto;
+ 	  -moz-border-radius:10px;
+ 	  border:solid 1px #4693b8;
+ 	  
+ 	  margin-right:3px;
+ 	  float:left;
+ 		}
+ 		
+ .title
+ {height:30px;
+ 	-moz-border-radius:10px;font-size:20px;
+ 	background-color:#5197ff;
+ 	color:White;
+ 	text-align:center;
+ 	}
+ 	#TinGD
+ 	{
+ 		
+ 		height:30px;
+ 		-moz-border-radius:10px;
+ 		background-color:#5197ff;
+ 	color:White;
+ 	font-size:20px;
+ 		
+ 		}
+ 	.muctin{font-size:17px;font-weight:bold;
+ 	        color:#004064;
+ 	        width:250px;
+ 	        }
+ .muctin:hover{color:Red;}
+ 	.noidungtin
+ 	{ font-size:14px;
+ 	  width:270px;
+ 		}
+ 		
+ 		.dau
+ 		{
+ 			color:Red;
+ 			padding-left:10px;
+ 			font-weight:bold;
+ 			font-size:17px;
+ 			
+ 			}
+ 	#newsright
+ 	{
+ 		
+ 		width:700px;
+ 		height :auto;
+ 		float:right;
+ 		
+ 		}
+ .tieude1
+ {
+ 	font-size:17px;font-weight:bold;
+ 	        color:#004064;
+ 	        width:570px;
+ 	        padding-left:5px;
+ 	}
+ 	.tieude1:hover{color:Red;}
+ 	.nd1
+ 	{
+ 		font-size:14px;width:570px;
+ 		padding-left:5px;
+ 	  }
