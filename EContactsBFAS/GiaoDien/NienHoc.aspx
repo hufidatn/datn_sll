@@ -17,7 +17,7 @@
         <tr>
             <td class="tentruong"> Tên năm:</td>
             <td class="dieukhien"><asp:TextBox runat="server" ID="txtTenNam" Width="300px" Height="25px"></asp:TextBox>
-            <asp:Label runat="server" ID="lblMaNam"></asp:Label></td>
+            <asp:Label runat="server" ID="lblMaNam" Text="0"></asp:Label></td>
         </tr>
         <tr>
             <td class="tentruong"> Ngày bắt đầu:</td>
@@ -50,9 +50,9 @@
             <td colspan="2" class="gridview">
             <asp:GridView ID="grvNamHoc" runat="server" AutoGenerateColumns="False" 
                       Width="100%"
-                     ForeColor="#333333" GridLines="Both" BorderStyle="Solid"
+                     ForeColor="#333333" BorderStyle="Solid"
                       Font-Overline="False" Font-Strikeout="False" 
-                    onselectedindexchanged="grvNamHoc_SelectedIndexChanged">
+                    onselectedindexchanged="grvNamHoc_SelectedIndexChanged" EnableModelValidation="True">
                     <RowStyle BackColor="#EFF3FB" />
                     <Columns>
                         <%--<asp:TemplateField>
@@ -73,12 +73,12 @@
                         <asp:TemplateField HeaderText="Tên năm học" SortExpression="SchoolYearName">
                             <ItemTemplate><%#Eval("SchoolYearName")%></ItemTemplate>
                         </asp:TemplateField>
-                        <asp:TemplateField HeaderText="Ngày VP" SortExpression="BeginDate">
+                        <asp:TemplateField HeaderText="Ngày BĐ" SortExpression="BeginDate">
                         <ItemTemplate>
                             <%#String.Format("{0:dd/MM/yyyy}",Eval("BeginDate"))%>
                         </ItemTemplate>
                         </asp:TemplateField>
-                        <asp:TemplateField HeaderText="Ngày VP" SortExpression="EndDate">
+                        <asp:TemplateField HeaderText="Ngày KT" SortExpression="EndDate">
                         <ItemTemplate>
                             <%#String.Format("{0:dd/MM/yyyy}",Eval("EndDate"))%>
                         </ItemTemplate>
