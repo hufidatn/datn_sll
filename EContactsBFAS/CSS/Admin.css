@@ -5,48 +5,41 @@ body {
 ul {
 list-style: none
 }
-ul#menu
-{
-	float:left;
-	width:980px;
-	position: relative;
-	/*font-size:1.8em;*/
-	font-size:20px;
-	height:35px;
-	text-transform:capitalize;
-	top:0px;
-	left:0px;
-	background-color:#1589ff;
-}
+    ul#menu {
+        float: left;
+        width: 980px;
+        /*position: relative;*/
+        /*font-size:1.8em;*/
+        height: 35px;
+        /*text-transform:capitalize;*/
+        top: 0px;
+        left: 0px;
+        background-color: #507cd1;
+    }
 #div_menungang{
 width: 980px;
 -moz-border-radius:10px;
 margin:5px auto 5px auto;
 }
-ul#menu li
-{
-	float: left;
-	height: 35px;
-	padding: 0px;
-	border-right: thin solid;
-	border-right-color: #005680;
+ul#menu li {
+    float: left;
+    height: 35px;
+    padding: 0px;
+    border-right: thin solid;
+    border-right-color: #005680;
 }
 
-ul#menu li a
-{
-	padding:5px 15px 5px 15px;
-	display: block;
-	color: #FFFFFF;
-	text-decoration:none;
-	height:8px;
-}
+    ul#menu li a {
+        padding: 5px 15px 5px 15px;
+        display: block;
+        color: #ffffff;
+        text-decoration: none;
+        height: 8px;
+    }
 
-ul#menu li:hover {
-background-color:Red;
-}
-
-
-
+    ul#menu li:hover {
+        background-color: #3d68fb;
+    }
 
 .menucha
 {

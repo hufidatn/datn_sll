@@ -18,7 +18,8 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
 </head>
@@ -27,20 +28,21 @@
     <asp:ToolkitScriptManager ID="tk1" runat="server">
     </asp:ToolkitScriptManager>
     <div style="width: 980px; margin: 5px auto">
-        <div style="width: 980px; margin: 5px auto; height: 170px; border: solid 1px blue;">
-            <img src="../image/banner1.jpg" style="width: 980px; height: 170px" />
+        <div style="width: 980px; margin: 5px auto; height: 170px;">
+            <img src="../image/sll.jpg" style="width: 980px; height: 170px" />
             <%--<img src="../image/banertrangchu.jpg" style="width:980px;" />--%>
         </div>
-        <div id="div_menungang">
+        <nav id="div_menungang" class="bg-primary">
             <ul id="menu">
-                <li class="top"><a href="TrangChu.aspx">Trang chủ</a></li>
+                <li class="top nav-item active"><a href="TrangChu.aspx">Trang chủ</a></li>
                 <li class="top"><a href="#">Giới thiệu</a></li>
                 <li class="top"><a href="XemDiem.aspx">Xem điểm</a></li>
                 <li class="top"><a href="#">Liên lạc</a></li>
                 <li class="top"><a href="#">Đăng nhập</a></li>
             </ul>
-        </div>
-        <div style="width:100%;height:25px;float:left;text-align:right;margin-right:20px;font-size:17px;background-color:#C3FDB8">
+        </nav>
+
+        <div style="width:100%;height:25px;float:left;text-align:right;margin-right:20px;font-size:17px;background-color:White">
          <b style="color:Red;font-style:italic" id="text" runat="server" >Chào bạn</b>&nbsp
        <b style="font-style:italic;font-stretch:ultra-condensed"><asp:Label ID="lblTenDN" runat="server" ></asp:Label></b>&nbsp&nbsp&nbsp&nbsp&nbsp
        <asp:LinkButton ID="lkbQuanLy" runat="server" Text="Trang thao tác"  

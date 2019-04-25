@@ -15,7 +15,7 @@
     height: 350px;
     margin-bottom: 5px;
     width: 600px;
-    border:solid 1px #3c7dbc;
+   
 }
 .BoxTopright {
     /*background: url("../Image/Main_06.gif") no-repeat scroll 0 0 transparent;*/
@@ -59,20 +59,18 @@ width:600px; height:350px; margin:0;
 		height:30px;
 		text-align:left;
 		font-size:17;
-		color:White;
+		color:black;
 		}
 		.imgbuton
 		{
 			-moz-border-radius:8px;
 			}
 	#newsleft
- 	{ width :270px;
+ 	{
+
  	  height:auto;
  	  -moz-border-radius:10px;
- 	  border:solid 1px #4693b8;
- 	  
- 	  margin-right:3px;
- 	  float:left;
+ 	  /*float:left;*/
  		}
  		
  .title
@@ -92,7 +90,7 @@ width:600px; height:350px; margin:0;
  	font-size:20px;
  		
  		}
- 	.muctin{font-size:17px;font-weight:bold;
+ 	.muctin{font-size:14px;font-weight:bold;
  	        color:#004064;
  	        width:250px;
  	        }
@@ -112,11 +110,8 @@ width:600px; height:350px; margin:0;
  			}
  	#newsright
  	{
- 		
- 		width:700px;
  		height :auto;
- 		float:right;
- 		
+ 		/*float:right;*/
  		}
  .tieude1
  {

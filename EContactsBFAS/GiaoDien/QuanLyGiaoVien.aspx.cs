@@ -175,7 +175,7 @@ public partial class GiaoDien_QuanLyGiaoVien : System.Web.UI.Page
         kt = kiemtrasodienthoai();
         if (kt == false)
             return;
-        Teacher tch = db.Teachers.SingleOrDefault(p => p.TeacherID == lblMa.Text);
+        Teacher tch = db.Teachers.SingleOrDefault(p => p.TeacherID == lblMaGV.Text);
         tch.TeacherName = txtHoTen.Text;
         tch.Phone = txtSDTDD.Text;
         tch.Email = txtEmail.Text;
@@ -185,23 +185,22 @@ public partial class GiaoDien_QuanLyGiaoVien : System.Web.UI.Page
     }
     protected void grvGiaoVien_SelectedIndexChanged(object sender, EventArgs e)
     {
+        btnSua.Enabled = true;
+        btnXoa.Enabled = true;
+        btnThem.Enabled = false;
         GridViewRow row = grvGiaoVien.SelectedRow;
-        Label lblMaGV = (Label)row.FindControl("lblMaGV");
-        var c=(from p in db.Teachers where p.TeacherID==lblMaGV.Text
+        Label lbl = (Label)row.FindControl("lblMaGV");
+        var c = (from p in db.Teachers where p.TeacherID == lbl.Text
               select new {p.TeacherName,p.Phone,p.Email,p.TeacherID}).First();
         txtEmail.Text = c.Email;
         txtHoTen.Text = c.TeacherName;
         txtSDTDD.Text = c.Phone;
         //ma = c.TeacherID.ToString().Trim();
-        lblMa.Text = c.TeacherID;
-        btnSua.Enabled = true;
-        btnXoa.Enabled = true;
-        btnThem.Enabled = false;
-
+        lblMaGV.Text = c.TeacherID;
     }
     protected void btnXoa_Click(object sender, EventArgs e)
     {
-        Teacher tch = db.Teachers.SingleOrDefault(p=>p.TeacherID==lblMa.Text);
+        Teacher tch = db.Teachers.SingleOrDefault(p=>p.TeacherID== lblMaGV.Text);
         db.Teachers.DeleteOnSubmit(tch);
         db.SubmitChanges();
         LoadGrid();

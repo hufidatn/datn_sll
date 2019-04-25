@@ -15,8 +15,8 @@
         <tr>
             <td class="tentruong"> Họ tên giáo viên:</td>
             <td class="dieukhien"><asp:TextBox runat="server" ID="txtHoTen" Width="300px" Height="25px"></asp:TextBox>
-            <label runat="server" id="lblChuThichTenGV" style="color:Red;" ></label></td>
-            <asp:Label runat="server" ID="lblMa" Visible="false" ></asp:Label>
+            <label runat="server" id="lblChuThichTenGV" style="color:Red;" ></label>
+            <asp:Label runat="server" ID="lblMaGV" Text="0" ></asp:Label></td>
             
         </tr>
 
@@ -59,9 +59,7 @@
             <asp:GridView ID="grvGiaoVien" runat="server" AutoGenerateColumns="False" 
                       Width="100%"
                      ForeColor="#333333" GridLines="Vertical" AllowPaging="True" 
-                         PageSize="10" 
-                    onselectedindexchanged="grvGiaoVien_SelectedIndexChanged" onpageindexchanging="grvGiaoVien_PageIndexChanging" 
-                      >
+                    onselectedindexchanged="grvGiaoVien_SelectedIndexChanged" onpageindexchanging="grvGiaoVien_PageIndexChanging" EnableModelValidation="True" >
                    
                     <RowStyle BackColor="#EFF3FB" />
                     <Columns>
@@ -69,11 +67,17 @@
                                  <ItemTemplate>   
                                  <%# Container.DataItemIndex + 1 %>   
                                 </ItemTemplate>   
-                    </asp:TemplateField>    
-                            <asp:TemplateField HeaderText="Họ tên GV" SortExpression="StudentName">
+                    </asp:TemplateField>
+                        <asp:TemplateField HeaderText="Mã GV" SortExpression="TeacherID">
+                                <ItemTemplate>
+                                    <asp:Label runat="server" Text='<%#Bind("TeacherID") %>' ID="lblMaGV"></asp:Label>
+                                </ItemTemplate>
+                               
+                            </asp:TemplateField>
+                            <asp:TemplateField HeaderText="Họ tên GV" SortExpression="TeacherName">
                                 <ItemTemplate>
                                     <asp:Label runat="server" Text='<%#Bind("TeacherName") %>' ID="lblTenGV"></asp:Label>
-                                    <asp:Label runat="server" Text='<%#Bind("TeacherID") %>' ID="lblMaGV" Visible="false"></asp:Label>
+                                    <%--<asp:Label runat="server" Text='<%#Bind("TeacherID") %>' ID="lblMaGV" Visible="false"></asp:Label>--%>
                                 </ItemTemplate>
                                
                             </asp:TemplateField> 
