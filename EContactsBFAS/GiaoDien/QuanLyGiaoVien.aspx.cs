@@ -41,7 +41,7 @@ public partial class GiaoDien_QuanLyGiaoVien : System.Web.UI.Page
         foreach (var con in c)
         {
 
-            if (con.ToString().Substring(0, 6) == dau)
+            if (con.ToString().Substring(0, 5) == dau)
             {
                 list.Add(con.ToString());
             }
@@ -175,7 +175,7 @@ public partial class GiaoDien_QuanLyGiaoVien : System.Web.UI.Page
         kt = kiemtrasodienthoai();
         if (kt == false)
             return;
-        Teacher tch = db.Teachers.SingleOrDefault(p => p.TeacherID == lblMaGV.Text);
+        Teacher tch = db.Teachers.SingleOrDefault(p => p.TeacherID == lblMa.Text);
         tch.TeacherName = txtHoTen.Text;
         tch.Phone = txtSDTDD.Text;
         tch.Email = txtEmail.Text;
@@ -196,11 +196,11 @@ public partial class GiaoDien_QuanLyGiaoVien : System.Web.UI.Page
         txtHoTen.Text = c.TeacherName;
         txtSDTDD.Text = c.Phone;
         //ma = c.TeacherID.ToString().Trim();
-        lblMaGV.Text = c.TeacherID;
+        lblMa.Text = "19425001  ";
     }
     protected void btnXoa_Click(object sender, EventArgs e)
     {
-        Teacher tch = db.Teachers.SingleOrDefault(p=>p.TeacherID== lblMaGV.Text);
+        Teacher tch = db.Teachers.SingleOrDefault(p=>p.TeacherID== lblMa.Text);
         db.Teachers.DeleteOnSubmit(tch);
         db.SubmitChanges();
         LoadGrid();

@@ -16,7 +16,7 @@
             <td class="tentruong"> Họ tên giáo viên:</td>
             <td class="dieukhien"><asp:TextBox runat="server" ID="txtHoTen" Width="300px" Height="25px"></asp:TextBox>
             <label runat="server" id="lblChuThichTenGV" style="color:Red;" ></label>
-            <asp:Label runat="server" ID="lblMaGV" Text="0" ></asp:Label></td>
+            <asp:Label runat="server" ID="lblMa" Text="0" ></asp:Label></td>
             
         </tr>
 
@@ -25,6 +25,7 @@
             <td class="dieukhien"><asp:TextBox runat="server" ID="txtEmail" Width="300px" Height="25px"></asp:TextBox>
             <label runat="server" id="lblChuThichEmail" style="color:Red"></label> </td>
         </tr>
+
        
         <tr>
             <td class="tentruong"> Số điện thoại:</td>
