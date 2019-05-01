@@ -5,7 +5,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
     <link href="../CSS/Admin.css" rel="Stylesheet" type="text/css" />
     <script type="text/javascript" language="javascript">
-    function ktDL()
+    <%--function ktDL()
     {
          var check=true;
          lblThongBao.innerHTML="";
@@ -21,7 +21,7 @@
          
         return check;
             
-    }
+    }--%>
 //    function isNgay(val,min,max)
 //    {
 //        if(val>=min&&val<=max)
@@ -31,6 +31,11 @@
    
      
     </script>
+    <script>
+  $(function () {
+    $('.datetimepicker1').datetimepicker();
+ });
+</script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
     <div class="khungchinh">
@@ -53,9 +58,18 @@
         </tr>
         <tr>
             <td class="tentruong"> Ngày sinh:</td>
-            <td class="dieukhien"><asp:ComboBox runat="server" ID="cboNgay" Width="60px"></asp:ComboBox>&nbsp;
+            <td class="dieukhien"><%--<asp:ComboBox runat="server" ID="cboNgay" Width="60px"></asp:ComboBox>&nbsp;
                                     <asp:ComboBox runat="server" ID="cboThang" Width="70px"></asp:ComboBox>&nbsp;
-                                    <asp:ComboBox runat="server" ID="cboNam" Width="70px"></asp:ComboBox>
+                                    <asp:ComboBox runat="server" ID="cboNam" Width="70px"></asp:ComboBox>--%>
+                <div class="form-group">
+                  <%--<label class="control-label">Appointment Time</label>--%>
+                  <div class='input-group date datetimepicker1' style="width:10px">
+                     <asp:TextBox runat="server" ID="txtNgSinh" Width="150px" Height="25px"></asp:TextBox>
+                     <span class="input-group-addon">
+                     <span class="glyphicon glyphicon-calendar"></span>
+                     </span>
+                  </div>
+               </div>
                                     <label runat="server" id="lblChuThichNgaySinh" style="color:Red;"></label></td>
             <%--<td><p id="ckNgaySinh">* </p></td>--%>
             
@@ -69,22 +83,72 @@
             <%--<td><p id="ckGioi">* </p></td>--%>
         </tr>
         <tr>
-            <td class="tentruong">Quê quán:</td>
-            <td class="dieukhien"><asp:TextBox runat="server" ID="txtQueQuan" Width="300px" Height="25px"></asp:TextBox>
-            <label runat="server" id="lblChuThichQueQuan"></label> </td>
+            <td class="tentruong">Địa chỉ:</td>
+            <td class="dieukhien"><asp:TextBox runat="server" ID="txtDiachi" Width="150px" Height="25px"></asp:TextBox>
+            <label runat="server" id="lblChuThichDC"></label> </td>
            <%-- <td><p id="ckQQ">* </p></td>--%>
         </tr>
         <tr>
-            <td class="tentruong"> Số điện thoại cố định:</td>
+            <td class="tentruong">Tỉnh/ Thành phố:</td>
+            <td class="dieukhien"><asp:ComboBox runat="server" ID="cboTP" ></asp:ComboBox>
+            <label runat="server" id="lblTinhTP"></label> </td>
+           <%-- <td><p id="ckQQ">* </p></td>--%>
+        </tr>
+        <tr>
+            <td class="tentruong">Quận/ Huyện:</td>
+            <td class="dieukhien"><asp:ComboBox runat="server" ID="cboQuan"></asp:ComboBox>
+            <label runat="server" id="lblQH"></label> </td>
+           <%-- <td><p id="ckQQ">* </p></td>--%>
+        </tr>
+        <tr>
+            <td class="tentruong"> Hình thức vào trường:</td>
             <td class="dieukhien"><asp:TextBox runat="server" ID="txtSDT" Width="150px" Height="25px"></asp:TextBox>
             <label runat="server" id="lblChuThichSDTCD" style="color:Red;"></label> </td>
             <td></td>
         </tr>
         <tr>
-            <td class="tentruong"> Số điện thoại di động:</td>
-            
-            <td class="dieukhien"><asp:TextBox runat="server" ID="txtSDTDD" Width="150px" Height="25px"></asp:TextBox>
+            <td class="tentruong"> Ngày vào trường:</td>
+
+            <td class="dieukhien">
+                <%--<asp:ComboBox runat="server" ID="cboNgay1" Width="60px"></asp:ComboBox>&nbsp;
+                <asp:ComboBox runat="server" ID="cboThang1" Width="70px"></asp:ComboBox>&nbsp;
+                <asp:ComboBox runat="server" ID="cboNam1" Width="70px"></asp:ComboBox>--%>
+               <%--<div class='col-md-6'>--%>
+               <div class="form-group">
+                  <%--<label class="control-label">Appointment Time</label>--%>
+                  <div class='input-group date datetimepicker1' style="width:10px">
+                     <asp:TextBox runat="server" ID="txtNVT" Width="150px" Height="25px"></asp:TextBox>
+                     <span class="input-group-addon">
+                     <span class="glyphicon glyphicon-calendar"></span>
+                     </span>
+                  </div>
+               </div>
+            <%--</div>--%>
+
+                <%--<div>
+                    <div class='input-group date' id='datetimepicker1'>
+                     <input type='text' class="" />
+                     <span class="input-group-addon">
+                     <span class="glyphicon glyphicon-calendar"></span>
+                     </span>
+                  </div>
+                </div>--%>
+
             <label runat="server" id="lblChuThichDTDD" style="color:Red;"></label>  </td>
+            <td></td>
+        </tr>
+        <tr>
+            <td class="tentruong"> Nơi sinh:</td>
+            
+            <td class="dieukhien"><asp:TextBox runat="server" ID="TextBox1" Width="150px" Height="25px"></asp:TextBox>
+            <label runat="server" id="Label1" style="color:Red;"></label>  </td>
+            <td></td>
+        </tr>
+        <tr>
+            <td class="tentruong"> Nơi sinh:</td>
+            
+            <td class="dieukhien"><asp:TextBox runat="server" ID="TextBox2" Width="150px" Height="25px"></asp:TextBox>
+            <label runat="server" id="Label2" style="color:Red;"></label>  </td>
             <td></td>
         </tr>
         <tr>
@@ -124,11 +188,10 @@
             <asp:GridView ID="grvHocSinh" runat="server" AutoGenerateColumns="False" 
                       Width="100%"
                      ForeColor="#333333" GridLines="Vertical" AllowPaging="True" 
-                         PageSize="10" 
                     
                     onselectedindexchanged="grvHocSinh_SelectedIndexChanged" 
                     onrowcommand="grvHocSinh_RowCommand" 
-                    onpageindexchanging="grvHocSinh_PageIndexChanging"   >
+                    onpageindexchanging="grvHocSinh_PageIndexChanging" EnableModelValidation="True"   >
                     <%--onrowdeleting="grvHocSinh_RowDeleting" 
                     onrowupdating="grvHocSinh_RowUpdating" 
                     onrowediting="grvHocSinh_RowEditing" 
@@ -173,15 +236,15 @@
                                 <%--<EditItemTemplate>
                                     <asp:TextBox runat="server" Text='<%#Bind("Address")%>' ID="txtDiaChi1" Width="60px"  ></asp:TextBox></EditItemTemplate>--%>
                             </asp:TemplateField>
-                            <asp:TemplateField HeaderText="SĐTCĐ" SortExpression="PhoneFixe">
+                            <asp:TemplateField HeaderText="Thành phố" SortExpression="City">
                                 <ItemTemplate>
-                                    <%#Eval("PhoneFixe")%></ItemTemplate>
+                                    <%#Eval("City")%></ItemTemplate>
                                 <%--<EditItemTemplate>
                                     <asp:TextBox runat="server" Text='<%#Bind("PhoneFixe")%>' ID="txtCD" Width="60px" ></asp:TextBox></EditItemTemplate>--%>
                             </asp:TemplateField>
-                            <asp:TemplateField HeaderText="SĐTDĐ" SortExpression="MobilePhone">
+                            <asp:TemplateField HeaderText="Quận huyện" SortExpression="District">
                                 <ItemTemplate>
-                                    <%#Eval("MobilePhone")%></ItemTemplate>
+                                    <%#Eval("District")%></ItemTemplate>
                                 <%--<EditItemTemplate>
                                     <asp:TextBox runat="server" Text='<%#Bind("MobilePhone")%>' ID="txtDD" Width="60px" ></asp:TextBox></EditItemTemplate>--%>
                             </asp:TemplateField>                           
