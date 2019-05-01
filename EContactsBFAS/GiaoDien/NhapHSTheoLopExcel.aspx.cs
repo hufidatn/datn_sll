@@ -138,8 +138,8 @@ public partial class GiaoDien_NhapHSTheoLopExcel : System.Web.UI.Page
                     st.Gender = dt.Rows[i][4].ToString();
                     st.DateOfBirth = DateTime.Parse(dt.Rows[i][3].ToString());
                     st.Address = dt.Rows[i][5].ToString();
-                    st.PhoneFixe = dt.Rows[i][6].ToString();
-                    st.MobilePhone = dt.Rows[i][7].ToString();
+                    //st.PhoneFixe = dt.Rows[i][6].ToString();
+                    //st.MobilePhone = dt.Rows[i][7].ToString();
                     db.Students.InsertOnSubmit(st);
                     db.SubmitChanges();
                     int c1 = (from p in db.ClassStudents
@@ -167,8 +167,8 @@ public partial class GiaoDien_NhapHSTheoLopExcel : System.Web.UI.Page
                     st.Gender = dt.Rows[i][4].ToString();
                     st.DateOfBirth = DateTime.Parse(dt.Rows[i][3].ToString());
                     st.Address = dt.Rows[i][5].ToString();
-                    st.PhoneFixe = dt.Rows[i][6].ToString();
-                    st.MobilePhone = dt.Rows[i][7].ToString();
+                    //st.PhoneFixe = dt.Rows[i][6].ToString();
+                    //st.MobilePhone = dt.Rows[i][7].ToString();
                     db.SubmitChanges();
                     int c1 = (from p in db.ClassStudents
                               where p.StudentID == dt.Rows[i][1].ToString()

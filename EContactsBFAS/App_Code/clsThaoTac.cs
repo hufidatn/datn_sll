@@ -120,6 +120,21 @@ public class clsThaoTac
         cboMon.DataValueField = "SubjectID";
         cboMon.DataSource = c;
         cboMon.DataBind();
+    }public void LoadCbCity(AjaxControlToolkit.ComboBox cboCity)
+    {
+        var c = from p in db.Cities select p;
+        cboCity.DataTextField = "NameCity";
+        cboCity.DataValueField = "id_city";
+        cboCity.DataSource = c;
+        cboCity.DataBind();
+    }
+    public void LoadCbQuan(AjaxControlToolkit.ComboBox cboQuan)
+    {
+        var c = from p in db.Districts select p;
+        cboQuan.DataTextField = "NameDistrict";
+        cboQuan.DataValueField = "id_district";
+        cboQuan.DataSource = c;
+        cboQuan.DataBind();
     }
     public void LoadCbLoaiDiem(AjaxControlToolkit.ComboBox cboLoaiDiem)
     {

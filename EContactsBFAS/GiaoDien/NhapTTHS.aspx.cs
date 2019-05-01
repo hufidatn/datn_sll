@@ -24,27 +24,28 @@ public partial class GiaoDien_NhapTTHS : System.Web.UI.Page
         {
             txtMaHS.Enabled = false;
             MaTuTang();
-            LoadTime();
+            cls.LoadCbCity(cboTP);
+            cls.LoadCbQuan(cboQuan);
+            //LoadTime();
             LoadGrid();
             btnSua.Enabled = false;
             btnXoa.Enabled = false;
-        
         }
     }
     void Insert()
     {
         
-        if (txtHoTen.Text != null && txtHoTen.Text != "" && txtQueQuan.Text != null && txtQueQuan.Text != "" && txtSDTDD.Text != null && txtSDTDD.Text != "")
+        if (txtHoTen.Text != null && txtHoTen.Text != "")
         {
             if (rdoNam.Checked != false || rdoNu.Checked != false)
             {
                 Student stu = new Student();
                 stu.StudentID = txtMaHS.Text;
                 stu.StudentName = txtHoTen.Text;
-                stu.PhoneFixe = txtSDT.Text;
-                stu.MobilePhone = txtSDTDD.Text;
-                stu.Address = txtQueQuan.Text;
-                stu.DateOfBirth = ChuyenDoiNgay();
+                stu.City = cboTP.SelectedValue.ToString();
+                stu.Address = txtDiachi.Text;
+                stu.DateOfBirth = DateTime.Parse(txtNgSinh.Text);
+                stu.SchoolDay = DateTime.Parse(txtNVT.Text);
                 if (rdoNu.Checked == true)
                 {
                     stu.Gender = "Nữ";
@@ -63,33 +64,40 @@ public partial class GiaoDien_NhapTTHS : System.Web.UI.Page
         }
 
     }
-    public void LoadTime()
+    public void loadCity()
     {
-        cboNgay.Items.Add("Ngày");
-        cboThang.Items.Add("Tháng");
-        cboNam.Items.Add("Năm");
-        for (int i = 1; i <= 31; i++)
-        {
-            cboNgay.Items.Add(i.ToString());
-        }
-        for (int j = 1; j <= 12; j++)
-        {
-            cboThang.Items.Add(j.ToString());
-        }
-        for (int k = 1990; k <= DateTime.Now.Year; k++)
-        {
-            cboNam.Items.Add(k.ToString());
-        }
+
     }
-    DateTime ChuyenDoiNgay()
-    {
-        DateTime dt;
-        int ngay = int.Parse(cboNgay.SelectedItem.Text.ToString());
-        int thang = int.Parse(cboThang.SelectedItem.Text.ToString());
-        int nam = int.Parse(cboNam.SelectedItem.Text.ToString());
-        dt = new DateTime(nam, thang, ngay);
-        return dt;
-    }
+    //public void LoadTime()
+    //{
+    //    cboNgay.Items.Add("Ngày");
+    //    cboThang.Items.Add("Tháng");
+    //    cboNam.Items.Add("Năm");
+    //    //cboNgay1.Items.Add("Ngày");
+    //    //cboThang1.Items.Add("Tháng");
+    //    //cboNam1.Items.Add("Năm");
+    //    for (int i = 1; i <= 31; i++)
+    //    {
+    //        cboNgay.Items.Add(i.ToString()); //cboNgay1.Items.Add(i.ToString());
+    //    }
+    //    for (int j = 1; j <= 12; j++)
+    //    {
+    //        cboThang.Items.Add(j.ToString());//cboThang1.Items.Add(j.ToString());
+    //    }
+    //    for (int k = 1990; k <= DateTime.Now.Year; k++)
+    //    {
+    //        cboNam.Items.Add(k.ToString());//cboNam1.Items.Add(k.ToString());
+    //    }
+    //}
+    //DateTime ChuyenDoiNgay()
+    //{
+    //    DateTime dt;
+    //    int ngay = int.Parse(cboNgay.SelectedItem.Text.ToString());
+    //    int thang = int.Parse(cboThang.SelectedItem.Text.ToString());
+    //    int nam = int.Parse(cboNam.SelectedItem.Text.ToString());
+    //    dt = new DateTime(nam, thang, ngay);
+    //    return dt;
+    //}
     void LoadGrid()
     {
         var data = from p in db.Students
@@ -102,22 +110,22 @@ public partial class GiaoDien_NhapTTHS : System.Web.UI.Page
         txtMaHS.Enabled = false;
         txtHoTen.Text = "";
         
-        txtQueQuan.Text="";
+        //txtQueQuan.Text="";
         txtSDT.Text="";
-        txtSDTDD.Text = "";
+        //txtSDTDD.Text = "";
         rdoNam.Checked = false;
         rdoNu.Checked = false;
-        cboNgay.SelectedIndex = 0;
-        cboThang.SelectedIndex = 0;
-        cboNam.SelectedIndex = 0;
+        //cboNgay.SelectedIndex = 0;
+        //cboThang.SelectedIndex = 0;
+        //cboNam.SelectedIndex = 0;
         MaTuTang();
-        txtSDTDD.Enabled = true;
+        //txtSDTDD.Enabled = true;
         txtHoTen.Enabled = true;
         txtMaHS.Enabled = true;
-        txtQueQuan.Enabled = true; txtSDT.Enabled = true;
-        cboNam.Enabled = true;
-        cboNgay.Enabled = true;
-        cboThang.Enabled = true;
+        //txtQueQuan.Enabled = true; txtSDT.Enabled = true;
+        //cboNam.Enabled = true;
+        //cboNgay.Enabled = true;
+        //cboThang.Enabled = true;
         rdoNam.Enabled = true;
         rdoNu.Enabled = true;
         fuNhapExcel.Enabled = false;
@@ -156,10 +164,10 @@ public partial class GiaoDien_NhapTTHS : System.Web.UI.Page
                 { return; }
                 kt=kiemtraGioiTinh();
                 if (kt == false) return;
-                kt=kiemtrasodienthoaiCD();
-                if (kt == false) return;
-                kt = kiemtrasodienthoaiDD();
-                if (kt == false) return;
+                //kt=kiemtrasodienthoaiCD();
+                //if (kt == false) return;
+                //kt = kiemtrasodienthoaiDD();
+                //if (kt == false) return;
 
                 Insert();
                 fuNhapExcel.Enabled = false;
@@ -224,8 +232,6 @@ public partial class GiaoDien_NhapTTHS : System.Web.UI.Page
                     st.Gender = dt.Rows[i][4].ToString();
                     st.DateOfBirth = DateTime.Parse(dt.Rows[i][3].ToString());
                     st.Address = dt.Rows[i][5].ToString();
-                    st.PhoneFixe = dt.Rows[i][6].ToString();
-                    st.MobilePhone = dt.Rows[i][7].ToString();
                     db.Students.InsertOnSubmit(st);
                     db.SubmitChanges();
                     //LoadGrid();
@@ -237,8 +243,6 @@ public partial class GiaoDien_NhapTTHS : System.Web.UI.Page
                         st.Gender = dt.Rows[i][4].ToString();
                         st.DateOfBirth = DateTime.Parse(dt.Rows[i][3].ToString());
                         st.Address = dt.Rows[i][5].ToString();
-                        st.PhoneFixe = dt.Rows[i][6].ToString();
-                        st.MobilePhone = dt.Rows[i][7].ToString();
                         db.SubmitChanges();
                         
                     }
@@ -261,12 +265,12 @@ public partial class GiaoDien_NhapTTHS : System.Web.UI.Page
         if (ckExcel.Checked == true)
         {
             txtHoTen.Enabled = false;
-            txtQueQuan.Enabled = false;
+            //txtQueQuan.Enabled = false;
             txtSDT.Enabled = false;
-            txtSDTDD.Enabled = false;
-            cboNam.Enabled = false;
-            cboNgay.Enabled = false;
-            cboNam.Enabled = false;
+            //txtSDTDD.Enabled = false;
+            //cboNam.Enabled = false;
+            //cboNgay.Enabled = false;
+            //cboNam.Enabled = false;
             rdoNam.Enabled = false;
             rdoNu.Enabled = false;
             fuNhapExcel.Enabled = true;
@@ -300,29 +304,29 @@ public partial class GiaoDien_NhapTTHS : System.Web.UI.Page
         var c = (from p in db.Students where p.StudentID == lbma.Text select p).First();
         txtHoTen.Text = c.StudentName.Trim();
         txtMaHS.Text = c.StudentID.Trim();
-        txtQueQuan.Text = c.Address.Trim();
-        txtSDT.Text = c.PhoneFixe.Trim();
-        txtSDTDD.Text = c.MobilePhone.Trim();
+        //txtQueQuan.Text = c.Address.Trim();
+        //txtSDT.Text = c.PhoneFixe.Trim();
+        //txtSDTDD.Text = c.MobilePhone.Trim();
         string chuoi = c.DateOfBirth.ToString();
         string[] mang = chuoi.Split(' ');
         string[] s = mang[0].Split('/');
-        if (s[0].Substring(0, 1) == "0")
-        {
-            cboNgay.Text = s[0].Substring(1);
-        }
-        else
-        {
-            cboNgay.Text = s[0];
-        }
-        if (s[1].Substring(0, 1) == "0")
-        {
-            cboThang.Text = s[1].Substring(1);
-        }
-        else
-        {
-            cboThang.Text = s[1];
-        }
-        cboNam.Text = s[2];
+        //if (s[0].Substring(0, 1) == "0")
+        //{
+        //    cboNgay.Text = s[0].Substring(1);
+        //}
+        //else
+        //{
+        //    cboNgay.Text = s[0];
+        //}
+        //if (s[1].Substring(0, 1) == "0")
+        //{
+        //    cboThang.Text = s[1].Substring(1);
+        //}
+        //else
+        //{
+        //    cboThang.Text = s[1];
+        //}
+        //cboNam.Text = s[2];
         if (c.Gender.Trim() == "Nam")
         {
             rdoNam.Checked = true;
@@ -342,14 +346,12 @@ public partial class GiaoDien_NhapTTHS : System.Web.UI.Page
         { return; }
         kt = kiemtraGioiTinh();
         if (kt == false) return;
-        kt = kiemtrasodienthoaiCD();
-        if (kt == false) return;
-        kt = kiemtrasodienthoaiDD();
-        if (kt == false) return;
+        //kt = kiemtrasodienthoaiCD();
+        //if (kt == false) return;
+        //kt = kiemtrasodienthoaiDD();
+        //if (kt == false) return;
         Student st = db.Students.SingleOrDefault(p => p.StudentID == txtMaHS.Text);
         st.StudentName = txtHoTen.Text;
-        st.PhoneFixe = txtSDT.Text;
-        st.MobilePhone = txtSDTDD.Text;
         if (rdoNam.Checked == true)
         {
             st.Gender = "Nam";
@@ -357,8 +359,8 @@ public partial class GiaoDien_NhapTTHS : System.Web.UI.Page
         }
         if (rdoNu.Checked == true)
         { st.Gender = "Nữ"; }
-        st.DateOfBirth = ChuyenDoiNgay();
-        st.Address = txtQueQuan.Text;
+        st.DateOfBirth = DateTime.Parse(txtNgSinh.Text);
+        //st.Address = txtQueQuan.Text;
         db.SubmitChanges();
         LoadGrid();
         Refresh();
@@ -398,8 +400,6 @@ public partial class GiaoDien_NhapTTHS : System.Web.UI.Page
         
         Student st = db.Students.SingleOrDefault(p=>p.StudentID==lblma.Text);
         st.StudentName = txtTen.Text;
-        st.PhoneFixe = txtCD.Text;
-        st.MobilePhone = txtDD.Text;
         st.Gender = ddlGioi.SelectedItem.ToString();
         st.DateOfBirth =DateTime.Parse(txtNS.Text);
         st.Address = txtDC.Text;
@@ -418,9 +418,7 @@ public partial class GiaoDien_NhapTTHS : System.Web.UI.Page
 
         txtHoTen.Text = st.StudentName.ToString();
         txtMaHS.Text = st.StudentID.ToString();
-        txtQueQuan.Text = st.Address.ToString();
-        txtSDT.Text = st.PhoneFixe.ToString();
-        txtSDTDD.Text = st.MobilePhone.ToString();
+        //txtQueQuan.Text = st.Address.ToString();
         grvHocSinh.EditIndex = e.NewEditIndex;
         LoadGrid();
         
@@ -517,7 +515,7 @@ public partial class GiaoDien_NhapTTHS : System.Web.UI.Page
         lblThongBao.InnerText = "";
         lblChuThichSDTCD.InnerText = "";
         lblChuThichDTDD.InnerText = "";
-        if (txtHoTen.Text == ""||txtQueQuan.Text=="")
+        if (txtHoTen.Text == "")//txtQueQuan.Text=="")
         {
             kt = false;
             lblThongBao.InnerText = "Các trường không được để trống";
@@ -525,38 +523,38 @@ public partial class GiaoDien_NhapTTHS : System.Web.UI.Page
         
         return kt;
     }
-    bool kiemtrasodienthoaiCD()
-    {
-        bool kt = true;
-        lblThongBao.InnerText = "";
-        if (txtSDTDD.Text == "")
-        {
-            kt = false;
-            lblThongBao.InnerText = "Số điện thoại không được để trống";
-        }
-        if (cls.CheckPhone(txtSDT.Text) == false)
-        {
-            kt = false;
-            lblThongBao.InnerText = "Số điện thoại nhập không đúng định dạng";
-        }
-        return kt;
-    }
-    bool kiemtrasodienthoaiDD()
-    {
-        bool kt = true;
-        lblThongBao.InnerText = "";
-        if (txtSDTDD.Text == "")
-        {
-            kt = false;
-            lblThongBao.InnerText = "Số điện thoại không được để trống";
-        }
-        if (cls.CheckPhone(txtSDTDD.Text) == false)
-        {
-            kt = false;
-            lblThongBao.InnerText = "Số điện thoại nhập không đúng định dạng";
-        }
-        return kt;
-    }
+    //bool kiemtrasodienthoaiCD()
+    //{
+    //    bool kt = true;
+    //    lblThongBao.InnerText = "";
+    //    if (txtSDTDD.Text == "")
+    //    {
+    //        kt = false;
+    //        lblThongBao.InnerText = "Số điện thoại không được để trống";
+    //    }
+    //    if (cls.CheckPhone(txtSDT.Text) == false)
+    //    {
+    //        kt = false;
+    //        lblThongBao.InnerText = "Số điện thoại nhập không đúng định dạng";
+    //    }
+    //    return kt;
+    //}
+    //bool kiemtrasodienthoaiDD()
+    //{
+    //    bool kt = true;
+    //    lblThongBao.InnerText = "";
+    //    if (txtSDTDD.Text == "")
+    //    {
+    //        kt = false;
+    //        lblThongBao.InnerText = "Số điện thoại không được để trống";
+    //    }
+    //    if (cls.CheckPhone(txtSDTDD.Text) == false)
+    //    {
+    //        kt = false;
+    //        lblThongBao.InnerText = "Số điện thoại nhập không đúng định dạng";
+    //    }
+    //    return kt;
+    //}
     private bool CheckFileType(string FileName)
     {
         string ext = Path.GetExtension(FileName);
