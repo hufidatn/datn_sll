@@ -108,7 +108,7 @@ public partial class GiaoDien_QuanLyLop : System.Web.UI.Page
     {
         GridViewRow row = grvLop.SelectedRow;
         Label lbma = (Label)row.FindControl("lblMa");
-        var c=(from p in db.Classes where p.ClassID==int.Parse(lblMaLop.Text) select p).First() ;
+        var c=(from p in db.Classes where p.ClassID==int.Parse(lbma.Text) select p).First() ;
         lblMaLop.Text = c.ClassID.ToString();
         txtTenLop.Text = c.ClassName;
         btnSua.Enabled = true;

@@ -84,7 +84,13 @@ public partial class QuanTri_GroupUsers : System.Web.UI.Page
         txtMa.Text = c.TeacherID;
         txtNguoiDung.Text = c.TeacherName;
         txtDangNhap.Text = c.UserName;
-        txtMatKhau.Text = c.PassWord.Trim();
+        string pass = "";
+        if(c.PassWord == null)
+        {
+            txtMatKhau.Text = pass;
+        }
+        else
+            txtMatKhau.Text = c.PassWord.Trim();
         txtMatKhau.Attributes.Add("value",txtMatKhau.Text);
         txtNguoiDung.Enabled = false;
         txtMa.Enabled = false;
