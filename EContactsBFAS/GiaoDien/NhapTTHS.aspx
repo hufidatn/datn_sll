@@ -102,8 +102,11 @@
         </tr>
         <tr>
             <td class="tentruong"> Hình thức vào trường:</td>
-            <td class="dieukhien"><asp:TextBox runat="server" ID="txtSDT" Width="150px" Height="25px"></asp:TextBox>
-            <label runat="server" id="lblChuThichSDTCD" style="color:Red;"></label> </td>
+            <td class="dieukhien"><asp:ComboBox runat="server" ID="cboHTVT">
+                <asp:ListItem>Chuyển trường</asp:ListItem>
+                <asp:ListItem>Thi chuyển cấp</asp:ListItem>
+                </asp:ComboBox>
+            <label runat="server" id="lblHTVT" style="color:Red;"></label> </td>
             <td></td>
         </tr>
         <tr>
@@ -140,15 +143,17 @@
         <tr>
             <td class="tentruong"> Nơi sinh:</td>
             
-            <td class="dieukhien"><asp:TextBox runat="server" ID="TextBox1" Width="150px" Height="25px"></asp:TextBox>
+            <td class="dieukhien"><asp:TextBox runat="server" ID="txtNoiSinh" Width="150px" Height="25px"></asp:TextBox>
             <label runat="server" id="Label1" style="color:Red;"></label>  </td>
             <td></td>
         </tr>
         <tr>
-            <td class="tentruong"> Nơi sinh:</td>
+            <td class="tentruong"> Hình học sinh:</td>
             
-            <td class="dieukhien"><asp:TextBox runat="server" ID="TextBox2" Width="150px" Height="25px"></asp:TextBox>
-            <label runat="server" id="Label2" style="color:Red;"></label>  </td>
+            <td class="dieukhien">
+                <asp:FileUpload ID="FileUpload1" runat="server" />
+            <label runat="server" id="lblUpload" style="color:Red;"></label>  
+            </td>
             <td></td>
         </tr>
         <tr>

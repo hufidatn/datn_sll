@@ -34,33 +34,56 @@ public partial class GiaoDien_NhapTTHS : System.Web.UI.Page
     }
     void Insert()
     {
-        
-        if (txtHoTen.Text != null && txtHoTen.Text != "")
+        lblUpload.InnerText = "";
+        if (FileUpload1.HasFile)
         {
-            if (rdoNam.Checked != false || rdoNu.Checked != false)
+            string file = System.IO.Path.GetExtension(FileUpload1.FileName);
+            if (file == ".jpg" || file == ".png")
             {
-                Student stu = new Student();
-                stu.StudentID = txtMaHS.Text;
-                stu.StudentName = txtHoTen.Text;
-                stu.City = cboTP.SelectedValue.ToString();
-                stu.Address = txtDiachi.Text;
-                stu.DateOfBirth = DateTime.Parse(txtNgSinh.Text);
-                stu.SchoolDay = DateTime.Parse(txtNVT.Text);
-                if (rdoNu.Checked == true)
-                {
-                    stu.Gender = "Nữ";
-                }
-                if (rdoNam.Checked == true)
-                {
-                    stu.Gender = "Nam";
-                }
-                //stu.Gender = "Nữ";
-                db.Students.InsertOnSubmit(stu);
-                db.SubmitChanges();
-                LoadGrid();
-                ScriptManager.RegisterStartupScript(this, this.GetType(), "Alert", "alert('Bạn thêm thành công');", true);
-                Refresh();
+                //string path = Server.MapPath("image\\");
+                string path = Path.Combine(Server.MapPath("~/image/img_HS"), Path.GetFileName(FileUpload1.FileName));
+                FileUpload1.SaveAs(path);
+                //lblUpload.Text = path;
             }
+            else
+            {
+                lblUpload.InnerText = "Ảnh sai định dạng !";
+            }
+            if (txtHoTen.Text != "" && txtDiachi.Text != "" && txtNgSinh.Text != "" && txtNoiSinh.Text != "" && txtNVT.Text != "")
+            {
+                if (rdoNam.Checked != false || rdoNu.Checked != false)
+                {
+                    Student stu = new Student();
+                    stu.StudentID = txtMaHS.Text;
+                    stu.StudentName = txtHoTen.Text;
+                    stu.City = cboTP.SelectedValue.ToString();
+                    stu.Status = "1";
+                    stu.Images = "/image/img_HS/"+FileUpload1.FileName;
+                    stu.SchoolEntryForm = cboHTVT.SelectedValue;
+                    stu.Address = txtDiachi.Text;
+                    stu.DateOfBirth = DateTime.Parse(txtNgSinh.Text);
+                    stu.SchoolDay = DateTime.Parse(txtNVT.Text);
+                    stu.Username = stu.Password = txtMaHS.Text;
+                    if (rdoNu.Checked == true)
+                    {
+                        stu.Gender = "Nữ";
+                    }
+                    if (rdoNam.Checked == true)
+                    {
+                        stu.Gender = "Nam";
+                    }
+                    //stu.Gender = "Nữ";
+                    db.Students.InsertOnSubmit(stu);
+                    db.SubmitChanges();
+                    LoadGrid();
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "Alert", "alert('Bạn thêm thành công');", true);
+                    Refresh();
+                }
+            }
+        }
+        else
+        {
+            lblUpload.InnerText = "Xin chọn ảnh !";
         }
 
     }
@@ -111,7 +134,7 @@ public partial class GiaoDien_NhapTTHS : System.Web.UI.Page
         txtHoTen.Text = "";
         
         //txtQueQuan.Text="";
-        txtSDT.Text="";
+        //txtSDT.Text="";
         //txtSDTDD.Text = "";
         rdoNam.Checked = false;
         rdoNu.Checked = false;
@@ -266,7 +289,7 @@ public partial class GiaoDien_NhapTTHS : System.Web.UI.Page
         {
             txtHoTen.Enabled = false;
             //txtQueQuan.Enabled = false;
-            txtSDT.Enabled = false;
+            //txtSDT.Enabled = false;
             //txtSDTDD.Enabled = false;
             //cboNam.Enabled = false;
             //cboNgay.Enabled = false;
@@ -513,7 +536,7 @@ public partial class GiaoDien_NhapTTHS : System.Web.UI.Page
     {
         bool kt = true;
         lblThongBao.InnerText = "";
-        lblChuThichSDTCD.InnerText = "";
+        lblUpload.InnerText = "";
         lblChuThichDTDD.InnerText = "";
         if (txtHoTen.Text == "")//txtQueQuan.Text=="")
         {
@@ -523,38 +546,6 @@ public partial class GiaoDien_NhapTTHS : System.Web.UI.Page
         
         return kt;
     }
-    //bool kiemtrasodienthoaiCD()
-    //{
-    //    bool kt = true;
-    //    lblThongBao.InnerText = "";
-    //    if (txtSDTDD.Text == "")
-    //    {
-    //        kt = false;
-    //        lblThongBao.InnerText = "Số điện thoại không được để trống";
-    //    }
-    //    if (cls.CheckPhone(txtSDT.Text) == false)
-    //    {
-    //        kt = false;
-    //        lblThongBao.InnerText = "Số điện thoại nhập không đúng định dạng";
-    //    }
-    //    return kt;
-    //}
-    //bool kiemtrasodienthoaiDD()
-    //{
-    //    bool kt = true;
-    //    lblThongBao.InnerText = "";
-    //    if (txtSDTDD.Text == "")
-    //    {
-    //        kt = false;
-    //        lblThongBao.InnerText = "Số điện thoại không được để trống";
-    //    }
-    //    if (cls.CheckPhone(txtSDTDD.Text) == false)
-    //    {
-    //        kt = false;
-    //        lblThongBao.InnerText = "Số điện thoại nhập không đúng định dạng";
-    //    }
-    //    return kt;
-    //}
     private bool CheckFileType(string FileName)
     {
         string ext = Path.GetExtension(FileName);
